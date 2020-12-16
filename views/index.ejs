@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>หน้าหลัก</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <script>
+      function _goAllCheck(){
+        window.location.href = "/findall";
+      }
+      function _goSearchCheck() {
+        window.location.href = "/find";
+      }
+      function _goAdminManagement() {
+        window.location.href = "/login";
+      }
+    </script>
+
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/"><img src="assets/img/logo.png" alt=""/></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/index" class="active">หน้าหลัก</a></li>
+            <li>
+              <a href="/findall">ดูเช็คที่ฝากไว้ทั้งหมด</a>
+            </li>
+            <li><a href="/find">ค้นหาเช็ค</a></li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li><a href="/login">เข้าสู่ระบบ</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>ตรวจสอบเช็คของท่าน</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="four-elements">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div onclick="_goAllCheck()" class="four-elements--image">
+                <i><img src="assets/img/menu1.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+              </div>
+              <h3>ดูเช็คที่ฝากไว้ทั้งหมด</h3>
+
+              <p>
+                ค้นหา และตรวจดู เช็คที่ฝากไว้ทั้งหมดในระบบ
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <div onclick="_goSearchCheck()" class="four-elements--image">
+                <!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
+                <i><img src="assets/img/menu2.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+
+              </div>
+              <h3>ค้นหาเช็คของท่าน</h3>
+              <p>
+                ค้นหา และตรวจดู เช็คของท่านที่ฝากไว้
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <div onclick="_goAdminManagement()" class="four-elements--image">
+                <!-- <i class="fa fa-lightbulb-o" aria-hidden="true"></i> -->
+                <i><img src="assets/img/menu3.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+              </div>
+              <h3>จัดการเช็ค (สำหรับเจ้าหน้าที่)</h3>
+              <p>
+                จัดการระบบเช็ค และสมาชิกทั้งหมด
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

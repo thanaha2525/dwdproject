@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ค้นหาเช็ค</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script>
+      function myFunction() {
+        // document.getElementById("demo").innerHTML = "Hello World";
+        alert("Hello World");
+      }
+    </script>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img src="assets/img/logo.png" alt=""/></a>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="/index" class="active">หน้าหลัก</a></li>
+        <li>
+          <a href="/findall">ดูเช็คที่ฝากไว้ทั้งหมด</a>
+        </li>
+        <li><a href="/find">ค้นหาเช็ค</a></li>
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
+        <li><a href="/login">เข้าสู่ระบบ</a></li>
+      </ul>
+    </div>
+    <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+  </div>
+</header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>ค้นหาเช็ค</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="four-elements">
+        <form class="/find" method="post" action="" novalidate>
+          <div class="form-group row">
+              <label for="input_otp" class="col-sm-3 col-form-label text-right">กรอกรุ่นหลักทรัพย์ของท่าน</label>
+              <div class="col">
+                  <input type="text" class="form-control" name="find" value="">         
+              </div>
+          </div>
+          <div class="form-group row">
+              <div class="col-sm-3 offset-sm-3 text-right pt-3">
+                   <button name="btn_submit" id="btn_submit"  class="btn btn-outline-warning btn-block">ค้นหา</button>
+              </div>
+          </div> 
+          </form> 
+      <div class="container">
+        <div class="text-align">
+          <br>
+          <% if(result.length > 0){ %>
+            ค้นพบ <%= result.length %> รายการ
+           <%}else{%> 
+            ไม่พบรายการของท่าน ถ้าต้องการติดต่อกรุณาติดต่อเจ้าหน้าที่ที่รับผิดชอบขอบท่าน
+            <%} %>
+        </div>
+        <br>
+      <table class="table">
+        <thead>
+          
+          <tr>
+            <th scope="col">รุ่นหลักทรัพย์</th>
+            <th scope="col">จำนวน</th>
+            <th scope="col">จ่ายก่อน</th>
+            <th scope="col">วันที่สร้าง</th>
+            <th scope="col">สร้างโดย</th>
+            <!--<th scope="col">เอกสารแนบ</th>-->
+            <th scope="col">สถานะ</th>
+            <th scope="col">ติดต่อ</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+<% result.forEach(result =>{ %>
+          <tr>
+              
+                   <th scope="row"><%= result.name %></th>
+            <td><%= result.count %></td>
+            <td><%= result.payBefore %></td>
+            <td><%= result.updateDate %></td>
+            <td><%= result.createdBy %></td>
+          <!----<td><button onclick="myFunction()" class="btn btn-outline-warning">ดู</button></td>-->
+            <td><%= result.status%></td>
+            <td><%= result.contact%></td>
+          </tr>
+           
+       <% }) %>
+        </tbody>
+      </table>
+    </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

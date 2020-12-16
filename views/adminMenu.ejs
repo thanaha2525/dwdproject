@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>การจัดการ</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <script>
+      function _goManagementCheck(){
+        window.location.href = "/check";
+      }
+      function _goHistoryPage() {
+        window.location.href = "/checkdetail";
+      }
+    
+    </script>
+
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/adminmanu"><img src="assets/img/logo.png" alt=""/></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/adminmanu">หน้าหลัก</a></li>
+            <li>
+              <a href="/check">จัดการเช็ค</a>
+            </li>
+            <li><a href="/checkdetail">ดูประวัติ</a></li>
+            <% if(status == 0) {%> <li><a href="/editstaff">จัดการสมาชิก</a></li> <% }else { %><li><a href="/editstaff">จัดการโปรไฟล์</a></li><% } %>
+            <li>&nbsp;</li>
+            <li><a href="/logout" onclick="return confirm('ต้องจากระบบ')"><u>ออกจากระบบ</u></a></li>
+            
+          </ul>
+        </div>
+        <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>การจัดการ (สำหรับเจ้าหน้าที่)</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+          
+        </p>
+      </div>
+
+    </div>
+  
+    <div class="wrapper">
+      <br><br><br>
+      <center>       <p style="font-size:18px; color:#D88500" >ยินดีต้อนรับเจ้าหน้าที่ : <u><%= username %></u></p>
+      </center>
+      <section class="four-elements">
+        
+        <div class="container">
+       
+          <div class="row">
+            <div class="col-sm-4">
+              <div onclick="_goManagementCheck()" class="four-elements--image">
+                <i><img src="assets/img/menu4.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+              </div>
+              <h3>จัดการเช็ค</h3>
+
+              <p>
+                จัดการระบบเช็คทั้งหมด
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <div onclick="_goHistoryPage()" class="four-elements--image">
+                <!-- <i class="fa fa-heart" aria-hidden="true"></i> -->
+                <i><img src="assets/img/menu5.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+
+              </div>
+              <h3>ดูประวัติ</h3>
+              <p>
+                ตรวจสอบประวัติการจัดการ
+              </p>
+            </div>
+            <% if(status == 0) {%>
+            <div class="col-sm-4">
+              <a href="/editstaff">
+              <div class="four-elements--image">
+                <!-- <i class="fa fa-lightbulb-o" aria-hidden="true"></i> -->
+                <i><img src="assets/img/menu6.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+              </div>
+              <h3>จัดการสมาชิก</h3></a>
+              <p>
+                จัดการระบบรายชื่อสมาชิกที่มี
+              </p>
+            </div>
+            <% }else{  %>
+
+<div class="col-sm-4">
+  <a href="/profile">
+              <div  class="four-elements--image">
+                <!-- <i class="fa fa-lightbulb-o" aria-hidden="true"></i> -->
+                <i><img src="assets/img/menu6.png" width="75" height="75" alt="" ariaaria-hidden="true"/></i>
+              </div>
+              <h3>โปรไฟล์</h3></a>
+              <p>
+                จัดการโปรไฟล์
+              </p>
+            </div>
+           <% }%>
+          </div>
+        </div>
+      </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

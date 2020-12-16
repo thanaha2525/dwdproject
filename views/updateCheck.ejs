@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>เพิ่มการฝาก</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/adminmanu"><img src="assets/img/logo.png" alt=""/></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/adminmanu">หน้าหลัก</a></li>
+            <li>
+              <a href="/check">จัดการเช็ค</a>
+            </li>
+            <li><a href="/checkdetail">ดูประวัติ</a></li>
+            <% if(status == 0) {%>
+            <li><a href="/editstaff">จัดการสมาชิก</a></li>
+            <% }else { %>
+            <li>&nbsp;</li>
+            <% } %>
+            <li>&nbsp;</li>
+            <li>
+              <a href="/logout" onclick="return confirm('ต้องจากระบบ')"
+                ><u>ออกจากระบบ</u></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>เพิ่มการฝาก (สำหรับเจ้าหน้าที่)</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="keep-touch">
+        <div class="container">
+          <div class="card">
+            <div class="card-body">
+              <h2>เพิ่มการฝากเช็ค</h2>
+              <span class="dot-dash dark">.</span>
+              <form
+                class="center"
+                action="/updatecheck"
+                onsubmit="return _regisSuccess();"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <input type="hidden" name="id" value="<%= result[0].id %>" />
+                <div class="form-group row">
+                  <label for="checkversion" class="col-sm-3 col-form-label"
+                    >รุ่นหลักทรัพย์ :</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      disabled
+                      class="form-control"
+                      id="checkversion"
+                      value="<%= result[0].name %>"
+                      name="name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="datepay" class="col-sm-3 col-form-label"
+                    >วันที่จ่ายก่อน :</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      disabled
+                      value="<%= result[0].payBefore %>"
+                      placeholder="วว/ดด/ปปปป"
+                      class="form-control"
+                      id="datepay"
+                      name="payBefore"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="checkprice" class="col-sm-3 col-form-label"
+                    >จำนวน :</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      disabled
+                      class="form-control"
+                      value="<%= result[0].count %>"
+                      id="checkprice"
+                      name="count"
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="checkprice" class="col-sm-3 col-form-label"
+                    >มูลค่า:</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      disabled
+                      value="<%= result[0].price %>"
+                      class="form-control"
+                      id="checkprice"
+                      name="price"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <span class="dot-dash dark">.</span>
+
+                <div class="form-group row">
+                  <label for="checkversion" class="col-sm-3 col-form-label"
+                    >สถานะ :</label
+                  >
+                  <div class="col-sm-9">
+                    <select name="status" class="form-control">
+                      <option value="สำเร็จ">สำเร็จ </option
+                      ><option value="เกินกำหนด">เกินกำหนด </option
+                      ><option value="ยกเลิก">ยกเลิก </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="checkprice" class="col-sm-3 col-form-label"
+                    >ชื่อผู้รับ :</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="checkprice"
+                      name="massenger"
+                      required
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="myFile" class="col-sm-4 col-form-label"
+                    >หลักฐาน :
+                  </label>
+                  <input type="file" id="myFile" name="file" required />
+                </div>
+                <div class="form-group row col-sm-5 center">
+                  <button
+                    type="submit"
+                    name="btn_submit"
+                    id="btn_submit"
+                    class="btn btn-outline-warning btn-block"
+                    onclick="return confirm('คุณแน่ใจแล้วว่ากรอกข้อมูลถูกต้อง เพราะไม่สามารถแก้ไขข้อมูลได้')"
+                  >
+                    ยืนยัน
+                  </button>
+                  <button
+                    type="reset"
+                    name="btn_reset"
+                    id="btn_reset"
+                    class="btn btn-outline-danger btn-block"
+                  >
+                    ยกเลิก
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

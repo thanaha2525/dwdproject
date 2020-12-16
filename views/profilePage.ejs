@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>จัดการสมาชิก</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script>
+      function myFunction() {
+        alert("Edit Data");
+      }
+      function myFunction2() {
+        alert("Data Delete");
+      }
+      function myFunction3() {
+        alert("See Data");
+      }
+      function _goCheckManagement() {
+        window.location.href = "/check";
+      }
+      function _goHistoryPage() {
+        window.location.href = "/checkdetail";
+      }
+    </script>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/adminmanu"><img src="assets/img/logo.png" alt=""/></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/adminmanu">หน้าหลัก</a></li>
+            <li>
+              <a href="/check">จัดการเช็ค</a>
+            </li>
+            <li><a href="/checkdetail">ดูประวัติ</a></li>
+            <% if(status == 0) {%>
+            <li><a href="/editstaff">จัดการสมาชิก</a></li>
+            <% }else { %>
+            <li>&nbsp;</li>
+            <% } %>
+            <li>&nbsp;</li>
+            <li>
+              <a href="/logout" onclick="return confirm('ต้องจากระบบ')"
+                ><u>ออกจากระบบ</u></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>จัดการสมาชิก (สำหรับเจ้าหน้าที่)</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="recent-works">
+        <div class="container">
+          <div class="recent-works--nav">
+            <ul>
+              <li data-filter=".table" onclick="_goCheckManagement()">
+                จัดการเช็ค
+              </li>
+              <li data-filter=".table" onclick="_goHistoryPage()">ดูประวัติ</li>
+              <li class="active" data-filter=".test">
+                จัดการสมาชิก
+              </li>
+            </ul>
+          </div>
+
+          <div class="text-alignCon">
+            <a class="text-alignCon" href="/changpassword"
+              >>> <u>เปลี่ยนPassword</u> <<</a
+            >
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">เลขบัตรประชาชน</th>
+                <th scope="col">ชื่อ</th>
+                <th scope="col">นามสกุล</th>
+                <th scope="col">เอกสารรับรอง</th>
+                <th scope="col">Username</th>
+
+                <th scope="col">สำนักงาน</th>
+                <th scope="col">เบอร์ติดต่อ</th>
+                <th colspan="2">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result.forEach(rs => { %>
+              <tr>
+                <th scope="row"><%= rs.perId %></th>
+                <td><%= rs.name %></td>
+                <td><%= rs.surname %></td>
+
+                <td>
+                  <a href="/openfile/<%= rs.perId %>" target="_blank">
+                    <button class="form-control">
+                      ดู
+                    </button></a
+                  >
+                </td>
+                <td><%= rs.username %></td>
+
+                <td><%= rs.office %></td>
+                <td>
+                  <%= rs.tel %>
+                </td>
+                <td>
+                  <% if(rs.perId != 'admin'){ %>
+
+                  <form action="/editprofile" method="POST">
+                    <input type="hidden" name="name" value="<%= rs.name %>" />
+                    <input
+                      type="hidden"
+                      name="sername"
+                      value="<%= rs.surname %>"
+                    />
+                    <input type="hidden" name="perId" value="<%= rs.perId %>" />
+                    <input
+                      type="hidden"
+                      name="username"
+                      value="<%= rs.username %>"
+                    />
+                    <input type="hidden" name="tel" value="<%= rs.tel %>" />
+                    <input
+                      type="hidden"
+                      name="office"
+                      value="<%= rs.office %>"
+                    />
+
+                    <button class="btn btn-outline-warning">
+                      แก้ไข
+                    </button>
+                  </form>
+                  <%} %>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

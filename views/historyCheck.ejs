@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ดูประวัติ</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link href="css/vendor/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/font-awesome.css" rel="stylesheet" />
+    <link href="css/vendor/slick.css" rel="stylesheet" />
+    <link href="css/vendor/slick-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script>
+      function myFunction() {
+        alert("See Data");
+      }
+      function _goCheckManagement() {
+        window.location.href = "/check";
+      }
+      function _goMemberPage() {
+        window.location.href = "/editstaff";
+      }
+    </script>
+
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/adminmanu"><img src="assets/img/logo.png" alt=""/></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li><a href="/adminmanu">หน้าหลัก</a></li>
+            <li>
+              <a href="/check">จัดการเช็ค</a>
+            </li>
+            <li><a href="/checkdetail">ดูประวัติ</a></li>
+            <% if(status == 0) {%>
+            <li><a href="/editstaff">จัดการสมาชิก</a></li>
+            <% }else { %>
+            <li>&nbsp;</li>
+            <% } %>
+            <li>&nbsp;</li>
+            <li>
+              <a href="/logout" onclick="return confirm('ต้องจากระบบ')"
+                ><u>ออกจากระบบ</u></a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="mobile-menu"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+
+    <div class="intro-page">
+      <div class="container">
+        <h1>ดูประวัติ (สำหรับเจ้าหน้าที่)</h1>
+        <p>
+          ระบบค้นหา จัดการเช็คอัตโนมัติ
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <section class="recent-works">
+        <div class="container">
+          <div class="recent-works--nav">
+            <ul>
+              <li data-filter=".table" onclick="_goCheckManagement()">
+                จัดการเช็ค
+              </li>
+              <li class="active" data-filter=".table">ดูประวัติ</li>
+              <li onclick="_goMemberPage()" data-filter=".test">
+                จัดการสมาชิก
+              </li>
+            </ul>
+          </div>
+          <form
+            class="container"
+            method="post"
+            action="/findhischeck"
+            novalidate
+          >
+            <div class="form-group row">
+              <label for="input_otp" class="col-sm-3 col-form-label text-right"
+                >พิมพ์คำที่ต้องการค้นหา</label
+              >
+              <div class="col">
+                <input type="text" class="form-control" name="find" value="" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-3 offset-sm-3 text-right pt-3">
+                <button
+                  name="btn_submit"
+                  id="btn_submit"
+                  class="btn btn-outline-warning btn-block"
+                >
+                  ค้นหา
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="text-alignCon">
+            <a class="text-alignCon" href="addCheck.html"
+              ><b>ประวัติที่พบ</b></a
+            >
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">รุ่นหลักทรัพย์</th>
+                <th scope="col">จำนวน</th>
+                <th scope="col">วันที่รับ</th>
+                <th scope="col">แก้ไขล่าสุด</th>
+                <th scope="col">มูลค่า</th>
+
+                <th scope="col">สร้างโดย</th>
+                <th scope="col">เอกสารแนบ</th>
+                <th scope="col">สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result.forEach(rs => { %>
+              <tr>
+                <th scope="row"><%= rs.name%></th>
+                <td><%= rs.count %></td>
+                <td><%= rs.payDate %></td>
+                <td><%= rs.updateDate %></td>
+
+                <td><%= rs.price %></td>
+                <td><%= rs.createdBy %></td>
+                <td>
+                  <a href="/checkfile/<%= rs.id %>" target="_blank">
+                    <button
+                      onclick="myFunction3()"
+                      class="btn btn-outline-warning"
+                    >
+                      ดู
+                    </button></a
+                  >
+                </td>
+                <td>
+                  <% if(rs.status == "สำเร็จ") {%>
+                  <p>สำเร็จ</p>
+                  <% }else if(rs.status == "ยกเลิก"){%>
+                  <p style="color: red;">ยกเลิก</p>
+                  <% }else if(rs.status == 'เกินกำหนด') { %>
+                  <p style="color: red;">เกินกำหนด</p>
+                  <% }%>
+                </td>
+                <% }) %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <a>ชื่อนักศึกษา</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/vendor/jquery-3.1.0.min.js"></script>
+    <script src="js/vendor/jquery.easing.min.js"></script>
+    <script src="js/vendor/tether.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/slick.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
